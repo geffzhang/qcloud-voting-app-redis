@@ -1,0 +1,16 @@
+version: '3'
+services:
+  qcloud-vote-back:
+    image: redis
+    container_name: qcloud-vote-back
+    ports:
+        - "6379:6379"
+
+  qcloud-vote-front:
+    build: ./qcloud-vote
+    image: qcloud-vote-front
+    container_name: qcloud-vote-front
+    environment:
+      REDIS: qcloud-vote-back
+    ports:
+        - "8080:80"
